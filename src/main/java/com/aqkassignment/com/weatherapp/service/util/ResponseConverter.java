@@ -1,11 +1,12 @@
-package com.aqkassignment.com.weatherapp.service;
+package com.aqkassignment.com.weatherapp.service.util;
+
 import org.springframework.http.ResponseEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashMap;
 
 public class ResponseConverter {
 
-    public static <ObjectMapper> HashMap<String, Object> convert(ResponseEntity<?> responseEntity) {
+    public static HashMap<String, Object> convert(ResponseEntity<?> responseEntity) {
         Object body = responseEntity.getBody();
 
         if (body == null) {
