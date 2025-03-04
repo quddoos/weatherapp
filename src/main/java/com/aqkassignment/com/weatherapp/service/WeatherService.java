@@ -23,7 +23,7 @@ public class WeatherService {
     @PostConstruct
     public void initializeCache() {
         initialCache.put("10001", Map.of("temperature", 22.0, "high", 28.0, "low", 18.0, "cached", true));
-        initialCache.put("90210", Map.of("temperature", 25.0, "high", 30.0, "low", 20.0, "cached", true));
+        initialCache.put("90210", Map.of("temperature", 25.0, "high", 30.0, "low", 20.0, "cached", false));
         initialCache.put("30301", Map.of("temperature", 27.0, "high", 33.0, "low", 23.0, "cached", true));
         initialCache.put("60601", Map.of("temperature", 18.0, "high", 22.0, "low", 14.0, "cached", true));
         initialCache.put("33101", Map.of("temperature", 30.0, "high", 35.0, "low", 28.0, "cached", true));
@@ -49,6 +49,9 @@ public class WeatherService {
                 forecast.put("high", ((Map<String, Object>) ((List<Map<String, Object>>) responseForecast.get("forecast")).get(0).get("day")).get("maxtemp_c"));
                 forecast.put("low", ((Map<String, Object>) ((List<Map<String, Object>>) responseForecast.get("forecast")).get(0).get("day")).get("mintemp_c"));
                 forecast.put("cached", false);
+                if(!initialCache.containsKey(zipCode)) {
+                    initialCache.put(zipCode, forecast); //add to cache if not in
+                }
                 return forecast;
             } else {
                 // Handle the error
