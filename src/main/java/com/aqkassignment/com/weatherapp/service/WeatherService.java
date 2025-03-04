@@ -27,6 +27,8 @@ public class WeatherService {
         initialCache.put("30301", Map.of("temperature", 27.0, "high", 33.0, "low", 23.0, "cached", true));
         initialCache.put("60601", Map.of("temperature", 18.0, "high", 22.0, "low", 14.0, "cached", true));
         initialCache.put("33101", Map.of("temperature", 30.0, "high", 35.0, "low", 28.0, "cached", true));
+        initialCache.put("54321", Map.of("temperature", 36.0, "high", 37.0, "low", 22.0, "cached", true));
+
     }
 
     @Cacheable(value = "forecast", key = "#zipCode", unless = "#result == null")
